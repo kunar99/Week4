@@ -1,11 +1,13 @@
 
 /**
  * File Name: MildotCalculator.java
- * Author: Souhair El Omari
- * Date: July 11, 2017
- * Purpose: Calculate the body mass index using TextFields
+ * Author: John Clayton
+ * Date: July 09, 2017
+ * Program will calculate the distance to a target using specified values
+ * entered by a user via a GUI interface
  *
  */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,19 +16,19 @@ import java.text.DecimalFormat;
 
 public class MildotCalculator extends JFrame implements ActionListener {
 
-    //holds height and weight for JFrame
+    //Height and weight for the JFrame
     private static final int WIDTH = 775;
     private static final int HEIGHT = 250;
 
-    // Calculate button
+    //Button to perform the distance calculation
     private static JButton button;
 
-    //text fields for input and output
+    //Creation of the text fields for input/output
     private static JTextField sizeNumberTxt;
     private static JTextField milNumberTxt;
     public static JTextField outputShot;
 
-    //labels for input and output
+    //Creation of the label names
     private static JLabel sizeLabel;
     private static JLabel milLabel;
     private static JLabel resultsLabel;
@@ -36,43 +38,49 @@ public class MildotCalculator extends JFrame implements ActionListener {
     public MildotCalculator() {
         super("Mildot Range Calculator");
 
-        //lays out the basic specifications of the frame
+        //Specifies the layout of the frame
         setFrame(WIDTH, HEIGHT);
         setLayout(new BorderLayout());
         setBackground(Color.lightGray);
 
-        //creates a Jpanel
+        //Creation of a JPanel
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.CENTER));
         add(panel, BorderLayout.SOUTH);
 
 
-        //textPanel specifications
+        //Creating two textPanels to be used
         JPanel textPanel = new JPanel();
         JPanel textPanel2 = new JPanel();
         add(textPanel, BorderLayout.WEST);
         add(textPanel2, BorderLayout.NORTH);
 
 
-        // Create TextFeilds and their Labels
+        //Creating text and label fields for Value, Mils, Results, and example
+        //Example label is created to give the user a visual example of data to input and validate their results.
         exampleLabel = new JLabel("Example: (Target is 68 inches * 27.8) divided by (Target in Mil Reticle is 4 mils) equals a distance to target of 472.6 yards");
         textPanel2.add(exampleLabel);
 
-        sizeLabel = new JLabel("Target size in inches: "); // Weight
+        //Creating a size text/label field for user to input their values
+        sizeLabel = new JLabel("Target size in inches: ");
         textPanel.add(sizeLabel);
         sizeNumberTxt = new JTextField(5);
         textPanel.add(sizeNumberTxt);
         sizeNumberTxt.setEditable(true);
+        //User can hover their mouse over this field to get an explanation of what data needs to be entered
         sizeNumberTxt.setToolTipText("This field is to enter the size of your target in inches. Target size needs to be in inches to be calculated corrected.");
 
-        milLabel = new JLabel("Mils of your target:  "); // Height
+       //Creating a mil Text/Label field for user to input their values
+        milLabel = new JLabel("Mils of your target:  "); 
         textPanel.add(milLabel);
         milNumberTxt = new JTextField(5);
         textPanel.add(milNumberTxt);
         milNumberTxt.setEditable(true);
+        //User can hover their mouse over this field to get an explanation of what data needs to be entered
         milNumberTxt.setToolTipText("This field corresponds to the amount of mildots your target is from the bottom first dot, within your scopes reticle.");
 
-        resultsLabel = new JLabel("Distance in Yards-to-Target: ");            // BMI result
+        //Creating a results Text/Label to display the calculated distance information
+        resultsLabel = new JLabel("Distance in Yards-to-Target: ");           
         textPanel.add(resultsLabel);
         outputShot = new JTextField(10);
         textPanel.add(outputShot);
@@ -80,20 +88,19 @@ public class MildotCalculator extends JFrame implements ActionListener {
         outputShot.setForeground(Color.RED);
         outputShot.setEditable(false);
 
-
-
-        //add button specifications
+        //Creating a JButton so user can perform the calculation
         button = new JButton("Calculate Your Shot");
         panel.add(button);
+        //User can hover their mouse over this field to get an explanation of what action needs to be performed
         button.setToolTipText("Button must be clicked to calculate the distance");
 
     }
 
-    @Override //Implement the ActionListener interface
+    //Creation of an ActionListener
     public void actionPerformed(ActionEvent arg0) {
     }
 
-    //Create the frame
+    
     private void setFrame(int width, int height) {
         setSize(width, height);
         setLocationRelativeTo(null);
@@ -105,7 +112,7 @@ public class MildotCalculator extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    //checks if the input is a numeric value
+    //Try/Catch clause to ensure correct values are entered
     public static boolean number(String input) {
 
         boolean number = false;
