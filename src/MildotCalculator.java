@@ -1,8 +1,6 @@
 
 /**
- * File Name: MildotCalculator.java
- * Author: John Clayton
- * Date: July 09, 2017
+ * Created by johnclayton on 07/10/2017.
  * Program will calculate the distance to a target using specified values
  * entered by a user via a GUI interface
  *
@@ -17,7 +15,7 @@ import java.text.DecimalFormat;
 public class MildotCalculator extends JFrame implements ActionListener {
 
     //Height and weight for the JFrame
-    private static final int WIDTH = 775;
+    private static final int WIDTH = 765;
     private static final int HEIGHT = 250;
 
     //Button to perform the distance calculation
@@ -45,13 +43,14 @@ public class MildotCalculator extends JFrame implements ActionListener {
 
         //Creation of a JPanel
         JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
         add(panel, BorderLayout.SOUTH);
 
 
         //Creating two textPanels to be used
         JPanel textPanel = new JPanel();
         JPanel textPanel2 = new JPanel();
+        textPanel.setLayout(new GridLayout(4, 2));
         add(textPanel, BorderLayout.WEST);
         add(textPanel2, BorderLayout.NORTH);
 
@@ -82,7 +81,7 @@ public class MildotCalculator extends JFrame implements ActionListener {
         //Creating a results Text/Label to display the calculated distance information
         resultsLabel = new JLabel("Distance in Yards-to-Target: ");           
         textPanel.add(resultsLabel);
-        outputShot = new JTextField(10);
+        outputShot = new JTextField(5);
         textPanel.add(outputShot);
         outputShot.setFont(new java.awt.Font("Arial", Font.ITALIC | Font.BOLD, 15));
         outputShot.setForeground(Color.RED);
@@ -135,21 +134,19 @@ public class MildotCalculator extends JFrame implements ActionListener {
     }
 
 
-    //main method
+    //Start of Main Method
     public static void main(String[] args) {
         MildotCalculator calc = new MildotCalculator();
 
         calc.display();
 
-        double value;
-        double mils;
 
-        // Event handler for the button
+        //Action Listener for the Calc Button
         button.addActionListener (e ->  {
 
             if (number(sizeNumberTxt.getText()) && number(milNumberTxt.getText()))
                     { calcYards (Double.parseDouble(sizeNumberTxt.getText()), Double.parseDouble(milNumberTxt.getText())); }
         } );
 
-    }
-}
+    }//End of Main
+}//End of Class
